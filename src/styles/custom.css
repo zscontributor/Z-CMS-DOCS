@@ -1,0 +1,30 @@
+/*
+ * Z-CMS docs theme — brand ACCENT only.
+ *
+ * We deliberately do NOT override --sl-color-white / --sl-color-gray-* /
+ * --sl-color-black here. Those drive the page background, and Starlight flips the
+ * whole greyscale between light and dark itself. Overriding them on :root (which
+ * applies to both themes) is what forced a dark background in light mode. Leaving
+ * them to Starlight makes both themes render correctly; we just tint the accent.
+ */
+
+:root {
+  --sl-color-accent-low: #172554;
+  --sl-color-accent: #3b82f6;
+  --sl-color-accent-high: #dbeafe;
+}
+
+:root[data-theme='light'] {
+  --sl-color-accent-low: #dbeafe;
+  --sl-color-accent: #2563eb;
+  --sl-color-accent-high: #1e3a8a;
+}
+
+/* A little polish. */
+.hero h1 {
+  letter-spacing: -0.04em;
+}
+
+.card-grid .card {
+  border-radius: 1rem;
+}

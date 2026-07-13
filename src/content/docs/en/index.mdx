@@ -1,0 +1,41 @@
+---
+title: Z-CMS Documentation
+description: Guides for using, extending, operating and publishing packages for Z-CMS.
+template: splash
+hero:
+  tagline: Build, manage and extend websites with a modern CMS platform.
+  actions:
+    - text: Get started
+      link: /en/users/getting-started/
+      icon: right-arrow
+      variant: primary
+    - text: Build your first plugin
+      link: /en/developers/plugin-handbook/getting-started/
+      icon: rocket
+      variant: minimal
+---
+
+import { LinkCard, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid>
+  <LinkCard
+    title="Users"
+    href="/en/users/getting-started/"
+    description="Manage content, media, themes, plugins, members and site settings."
+  />
+  <LinkCard
+    title="Developers"
+    href="/en/developers/getting-started/"
+    description="Build secure plugins and themes with the official SDKs, CLI and API."
+  />
+  <LinkCard
+    title="Operators"
+    href="/en/operators/deployment/"
+    description="Deploy, configure, back up, monitor and upgrade Z-CMS."
+  />
+  <LinkCard
+    title="Marketplace"
+    href="/en/marketplace/overview/"
+    description="Package, test, sign and publish extensions for Z-CMS users."
+  />
+</CardGrid>

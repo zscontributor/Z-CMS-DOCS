@@ -1,0 +1,8 @@
+# Keep the build context small; the image rebuilds from the lockfile.
+node_modules
+dist
+.astro
+.git
+.github
+*.log
+.DS_Store

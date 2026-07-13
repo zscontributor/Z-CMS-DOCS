@@ -1,0 +1,48 @@
+---
+title: Tài liệu Z-CMS
+description: Hướng dẫn sử dụng, phát triển, vận hành và phát hành extension trên Z-CMS.
+template: splash
+hero:
+  tagline: Xây dựng, quản lý và mở rộng website trên một nền tảng CMS hiện đại.
+  actions:
+    - text: Bắt đầu sử dụng
+      link: /vi/users/getting-started/
+      icon: right-arrow
+      variant: primary
+    - text: Tạo plugin đầu tiên
+      link: /vi/developers/plugin-handbook/getting-started/
+      icon: rocket
+      variant: minimal
+---
+
+import { LinkCard, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid>
+  <LinkCard
+    title="Người dùng"
+    href="/vi/users/getting-started/"
+    description="Quản lý nội dung, media, theme, plugin, thành viên và thiết lập website."
+  />
+  <LinkCard
+    title="Developers"
+    href="/vi/developers/getting-started/"
+    description="Phát triển plugin và theme an toàn bằng SDK, CLI và API chính thức của Z-CMS."
+  />
+  <LinkCard
+    title="Vận hành"
+    href="/vi/operators/deployment/"
+    description="Triển khai, cấu hình, sao lưu, giám sát và nâng cấp một hệ thống Z-CMS."
+  />
+  <LinkCard
+    title="Marketplace"
+    href="/vi/marketplace/overview/"
+    description="Đóng gói, kiểm thử, ký và phát hành plugin hoặc theme trên Z-CMS Marketplace."
+  />
+</CardGrid>
+
+## Tìm đúng tài liệu
+
+- Nếu bạn quản lý website trong Admin, bắt đầu tại **Người dùng**.
+- Nếu bạn phát triển integration, plugin hoặc theme, chọn **Developers**.
+- Nếu bạn triển khai Z-CMS trên hạ tầng riêng, chọn **Vận hành**.
+- Nếu bạn muốn phát hành package, chọn **Marketplace**.
