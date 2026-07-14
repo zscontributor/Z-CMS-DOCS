@@ -140,14 +140,27 @@ The page must remain usable in every state. Do not make navigation, the page tit
 
 ## Current contract limits
 
-The current Theme SDK does **not** provide a generic method to:
+The Theme SDK now provides a shared contract for **indirect** plugin integration:
+`ctx.hasCapability()` detects a feature, `ctx.getIntegration()` reads the public
+projection allow-listed by core, and `ctx.renderSlot()` positions interactive UI
+owned by the runtime. A theme neither imports the plugin nor receives its
+credentials.
 
-- call a plugin from a theme;
+The current contract still does **not** allow a theme to:
+
+- invoke an arbitrary plugin handler directly (there is no `ctx.callPlugin()` or
+  `ctx.callCapability()`);
 - read plugin settings or plugin storage;
 - query plugin-owned database tables;
 - fetch arbitrary plugin data through `ctx.hasCapability()`;
 - register a new dynamic payload shape from a package alone.
 
-If a feature needs request-time data, first add a safe, public field to the Z-CMS render contract and populate it in core. The theme can then render that field without receiving plugin credentials or direct database access. Until that contract exists, documenting a private API call would produce a theme that is unsupported and unsafe.
+If a feature needs request-time data or actions, core must define and allow-list
+the corresponding public projection or integration action. For example,
+`ai.assistant` currently exposes display data through `getIntegration()`, mounts
+chat UI through `renderSlot("floating")`, and allows only the `chat` action through
+the gateway. This is not a generic proxy through which a theme can call any
+plugin. Directing a theme to a private API would still produce an unsupported and
+unsafe theme.
 
 See [Render pages and blog posts](/en/developers/theme-handbook/rendering-content/) for the complete template data flow.

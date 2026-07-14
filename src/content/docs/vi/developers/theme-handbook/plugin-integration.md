@@ -140,14 +140,25 @@ Page phải sử dụng được trong mọi trạng thái. Không để navigat
 
 ## Giới hạn của contract hiện tại
 
-Theme SDK hiện chưa có cách dùng chung để:
+Theme SDK đã có contract dùng chung để theme tích hợp **gián tiếp** với plugin:
+`ctx.hasCapability()` phát hiện tính năng, `ctx.getIntegration()` đọc phần dữ liệu
+công khai do core allow-list, và `ctx.renderSlot()` đặt UI tương tác do runtime
+quản lý. Theme không import plugin và không nhận credential của plugin.
 
-- gọi plugin từ theme;
+Contract hiện tại vẫn chưa cho phép:
+
+- trực tiếp gọi tùy ý một plugin handler từ theme (không có
+  `ctx.callPlugin()` hoặc `ctx.callCapability()`);
 - đọc settings hoặc storage của plugin;
 - query database table do plugin sở hữu;
 - lấy dữ liệu plugin bất kỳ qua `ctx.hasCapability()`;
 - để một package tự đăng ký thêm payload động mới.
 
-Nếu tính năng cần dữ liệu theo từng request, trước tiên phải bổ sung một field công khai, an toàn vào render contract của Z-CMS và tạo dữ liệu đó trong core. Sau đó theme mới hiển thị field này mà không nhận credential của plugin hoặc truy cập trực tiếp database. Khi contract đó chưa tồn tại, hướng dẫn gọi private API sẽ tạo ra theme không được hỗ trợ và không an toàn.
+Nếu tính năng cần dữ liệu hoặc action theo từng request, core phải định nghĩa và
+allow-list public projection hoặc integration action tương ứng. Ví dụ hiện tại,
+`ai.assistant` công khai dữ liệu hiển thị qua `getIntegration()`, đặt chat UI qua
+`renderSlot("floating")`, và chỉ action `chat` được gateway cho phép. Đây không
+phải một proxy tổng quát để theme gọi bất kỳ plugin nào. Hướng dẫn theme gọi
+private API vẫn tạo ra theme không được hỗ trợ và không an toàn.
 
 Xem [Hiển thị page và bài viết blog](/vi/developers/theme-handbook/rendering-content/) để hiểu đầy đủ luồng dữ liệu của template.

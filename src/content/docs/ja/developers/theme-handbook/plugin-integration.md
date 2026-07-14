@@ -140,14 +140,27 @@ const blocks = {
 
 ## 現在の contract の制限
 
-現在の Theme SDK には、次の処理を行う汎用的な方法はありません。
+Theme SDK には、plugin と**間接的**に連携するための共通 contract がすでに
+あります。`ctx.hasCapability()` は機能を検出し、`ctx.getIntegration()` は
+core が allow-list した公開 projection を読み取り、`ctx.renderSlot()` は
+runtime が所有する対話 UI の配置場所を決めます。theme が plugin を import
+したり、plugin の credential を受け取ったりすることはありません。
 
-- テーマからプラグインを呼び出す。
+現在の contract でも、theme は次のことを行えません。
+
+- 任意の plugin handler を直接呼び出すこと（`ctx.callPlugin()` や
+  `ctx.callCapability()` はありません）。
 - プラグイン設定や plugin storage を読み取る。
 - プラグイン所有の database table を query する。
 - `ctx.hasCapability()` から任意のプラグインデータを取得する。
 - package だけで新しい動的 payload 形式を登録する。
 
-リクエスト時に生成するデータが必要な場合は、まず安全な公開フィールドを Z-CMS の render contract に追加し、core でその値を生成します。これにより、テーマはプラグインの credential や database への直接アクセスを受け取らずに、そのフィールドを表示できます。この contract がない状態で private API の呼び出しを案内すると、サポート対象外で安全でないテーマになります。
+リクエスト時のデータや action が必要な場合、core が対応する public
+projection または integration action を定義し、allow-list する必要があります。
+たとえば現在の `ai.assistant` は `getIntegration()` で表示用データを公開し、
+`renderSlot("floating")` で chat UI を配置し、gateway では `chat` action だけを
+許可します。これは theme が任意の plugin を呼び出せる汎用 proxy では
+ありません。theme に private API の使用を案内することは、今もサポート外で
+安全でない theme を作ることになります。
 
 テンプレートのデータフロー全体については、[ページとブログ記事を表示する](/ja/developers/theme-handbook/rendering-content/)を参照してください。
