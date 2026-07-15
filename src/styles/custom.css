@@ -9,15 +9,15 @@
  */
 
 :root {
-  --sl-color-accent-low: #172554;
-  --sl-color-accent: #3b82f6;
-  --sl-color-accent-high: #dbeafe;
+  --sl-color-accent-low: #451a03;
+  --sl-color-accent: #fa5600;
+  --sl-color-accent-high: #ffedd5;
 }
 
 :root[data-theme='light'] {
-  --sl-color-accent-low: #dbeafe;
-  --sl-color-accent: #2563eb;
-  --sl-color-accent-high: #1e3a8a;
+  --sl-color-accent-low: #ffedd5;
+  --sl-color-accent: #fa5600;
+  --sl-color-accent-high: #7c2d12;
 }
 
 /* A little polish. */
