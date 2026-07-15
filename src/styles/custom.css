@@ -28,3 +28,23 @@
 .card-grid .card {
   border-radius: 1rem;
 }
+
+/* Make the left navigation easier to scan. */
+.sidebar-content ul {
+  --sl-sidebar-item-padding-inline: 0.75rem;
+}
+
+.sidebar-content a,
+.sidebar-content summary {
+  padding-block: 0.45em;
+}
+
+.sidebar-content ul ul li + li {
+  margin-top: 0.2rem;
+}
+
+@media (min-width: 50rem) {
+  .sidebar-content .top-level > li + li {
+    margin-top: 0.75rem;
+  }
+}
